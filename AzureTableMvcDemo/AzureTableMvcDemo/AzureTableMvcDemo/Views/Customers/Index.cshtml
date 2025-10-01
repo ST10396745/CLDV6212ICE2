@@ -1,0 +1,36 @@
+﻿@model List<AzureTableMvcDemo.Models.CustomerEntity>
+@{
+    ViewData["Title"] = "Customers";
+}
+<h1>Customers</h1>
+
+@if (TempData["Message"] is string msg)
+{
+    <div class="alert alert-success">@msg</div>
+}
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create", "Customers")">Add Customer</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>RowKey</th>
+            <th>Timestamp</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Name</td>
+                <td>@c.Email</td>
+                <td>@c.RowKey</td>
+                <td>@c.Timestamp?.LocalDateTime</td>
+            </tr>
+        }
+    </tbody>
+</table>
